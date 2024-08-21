@@ -6,8 +6,13 @@ sudo apt install memcached
 sudo service memcached start
 sudo service memcached status
 
-Installing RPM Files on Ubuntu (If Needed):
+#Installing RPM Files on Ubuntu (If Needed):
 sudo apt update
 sudo apt install alien
 sudo alien -k epel-release-7-11.noarch.rpm
 sudo dpkg -i epel-release_7-11_all.deb
+
+Summary:
+    On Ubuntu, you interact with /etc/memcached.conf instead of /etc/sysconfig/memcached.
+    Use the service command to manage the Memcached service.
+    Ensure you have Memcached installed via apt, not yum.
