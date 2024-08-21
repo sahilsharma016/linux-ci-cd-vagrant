@@ -1,0 +1,13 @@
+install memcached in ubuntu
+
+
+sudo apt update
+sudo apt install memcached
+sudo service memcached start
+sudo service memcached status
+
+Installing RPM Files on Ubuntu (If Needed):
+sudo apt update
+sudo apt install alien
+sudo alien -k epel-release-7-11.noarch.rpm
+sudo dpkg -i epel-release_7-11_all.deb
