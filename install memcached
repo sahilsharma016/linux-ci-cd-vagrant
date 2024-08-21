@@ -16,3 +16,10 @@ Summary:
     On Ubuntu, you interact with /etc/memcached.conf instead of /etc/sysconfig/memcached.
     Use the service command to manage the Memcached service.
     Ensure you have Memcached installed via apt, not yum.
+
+   After making changes to the configuration file, don't forget to restart the Memcached service:
+sudo service memcached restart
+
+  Then you can check if it's listening on the desired IP:
+
+sudo netstat -tuln | grep 11211
