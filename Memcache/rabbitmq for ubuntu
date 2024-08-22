@@ -22,3 +22,11 @@ Step 1: Install RabbitMQ
   or using its management interface (if installed)
 
   sudo netstat -plnt | grep beam
+
+
+#add user with name "test" and password "test"
+  sudo rabbitmqctl add_user test test
+#set tag adminstator
+  rabbitmqctl set_user_tags test administrator
+#restart server
+  service rabbitmq-server restart
