@@ -1,0 +1,24 @@
+Step 1: Install RabbitMQ
+
+  echo "deb https://dl.bintray.com/rabbitmq/debian bionic main" | sudo tee /etc/apt/sources.list.d/bintray.rabbitmq.list
+  wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
+
+#if error occur then
+    wget --no-check-certificate -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
+  
+  Step 2
+  sudo apt-get update
+  sudo apt-get install rabbitmq-server
+
+  Step 3
+  sudo service rabbitmq-server start
+  sudo update-rc.d rabbitmq-server defaults
+
+ #check status
+ sudo service rabbitmq-server status
+
+  Step : Verify RabbitMQ Installation
+  After starting the service, you can check if RabbitMQ is running by listing its ports
+  or using its management interface (if installed)
+
+  sudo netstat -plnt | grep beam
