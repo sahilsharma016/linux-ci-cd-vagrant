@@ -1,0 +1,98 @@
+#java development kit (JDK)
+
+sudo apt install erlang -y
+
+#install jdk11 in os 14.0
+
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-11-jdk
+java -version
+
+**output should like this**
+root@app01:/home/vagrant# java -version
+openjdk version "11.0.14" 2022-01-18
+OpenJDK Runtime Environment (build 11.0.14+9-Ubuntu-0ubuntu2.14.04)
+OpenJDK 64-Bit Server VM (build 11.0.14+9-Ubuntu-0ubuntu2.14.04, mixed mode, sharing)
+
+
+#install git and maven
+
+sudo apt install maven -y
+mvn -version
+
+#output should look like
+Apache Maven 3.0.5
+Maven home: /usr/share/maven
+Java version: 11.0.14, vendor: Ubuntu
+Java home: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "3.13.0-170-generic", arch: "amd64", family: "unix"
+
+
+else follow 
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-22-04
+
+
+**install tomcat**
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.28/bin/apache-tomcat-10.1.28.tar.gz
+tar -xzf apache-tomcat-10.1.28.tar.gz
+#move 
+sudo mv apache-tomcat-10.1.28 /opt/tomcat
+
+      4. Set Up Environment Variables (Optional):
+      You might want to set environment variables for Tomcat. Add the following to your profile:
+sudo nano /etc/profile.d/tomcat.sh
+
+#Add:
+export CATALINA_HOME=/opt/tomcat
+export PATH=$CATALINA_HOME/bin:$PATH
+
+#Save and close the file, then make it executable:
+sudo chmod +x /etc/profile.d/tomcat.sh
+
+#reload profile
+source /etc/profile.d/tomcat.sh
+
+# Set Permissions:
+sudo chown -R $USER:$USER /opt/tomcat
+
+# Start Tomcat:
+cd /opt/tomcat/bin
+./startup.sh
+
+
+**make group/add user**
+groupadd tomcat  
+useradd -r -s /sbin/nologin -g tomcat tomcat 
+
+#now change ownership
+chown -R tomcat:tomcat /opt/tomcat  
+#this changes ownership of /opt/tomcat to all tomcat user and group
+
+#give RWX permission to tomcat user
+chmod -R 755 /opt/tomcat
+
+#restart 
+/opt/tomcat/bin/startup.sh
+
+#verify 
+ss -tlnp | grep 8080
+
+#output should
+LISTEN     0      100                      :::8080                    :::*      users:(("java",17156,45))
+
+The ss command output indicates that Tomcat is indeed running and listening on port 8080. The presence of "java" in the output suggests that Tomcat is active.
+
+#git clone
+ git clone -b main https://github.com/hkhcoder/vpro
+file-project.git
+
+ cd vprofile-project/
+ls src/main/resources/
+
+# just open file (it has all connection)
+ vim src/main/resources/application.properties
+
+#run
+mvn install
